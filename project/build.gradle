@@ -2,17 +2,17 @@ plugins {
     id 'cpp'
     id 'java'
     id 'google-test'
-    id "com.diffplug.spotless" version "6.11.0"
+    id("com.diffplug.spotless") version "7.0.0.BETA4"
     id 'edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin' version '2020.2'
     id 'edu.wpi.first.NativeUtils' version '2024.7.2'
     id 'edu.wpi.first.GradleJni' version '1.1.0'
     id 'edu.wpi.first.GradleVsCode' version '2.1.0'
-    // id "edu.wpi.first.GradleRIO" version "2025.1.1-beta-1"
-    id "edu.wpi.first.GradleRIO" version "2024.3.2"
+    id "edu.wpi.first.GradleRIO" version "2025.1.1-beta-1"
+    // id "edu.wpi.first.GradleRIO" version "2024.3.2"
 }
 
-// ext.wpilibVersion = "2025.1.1-beta-1"
-ext.wpilibVersion = "2024.3.2" // and again here, thanks gradle....
+ext.wpilibVersion = "2025.1.1-beta-1"
+// ext.wpilibVersion = "2024.3.2" // and again here, thanks gradle....
 
 repositories {
     mavenCentral()
@@ -60,7 +60,7 @@ nativeUtils {
 }
 
 javadoc {
-    destinationDir = new File("$rootDir/../docs/javadocs")
+    destinationDir = new File("$rootDir/../javadocs")
 
     exclude 'org/json/simple/**'
     options {
@@ -75,7 +75,7 @@ spotless {
             exclude '**/build/**', '**/build-*/**'
         }
         toggleOffOn()
-        googleJavaFormat()
+        palantirJavaFormat('2.39.0').formatJavadoc(true)
         removeUnusedImports()
         trimTrailingWhitespace()
         endWithNewline()
